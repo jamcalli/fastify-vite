@@ -65,5 +65,10 @@
     "fastify": ">=5",
     "vite": ">=6"
   },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
   "deprecated": false
 }
