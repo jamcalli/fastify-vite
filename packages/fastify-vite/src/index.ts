@@ -18,10 +18,14 @@ import type {
   RuntimeConfig,
 } from './types/options.ts'
 import type { ReplyDotRenderContext, ReplyDotRenderResult } from './types/reply.ts'
-import type { RouteDefinition } from './types/route.ts'
+import type { ClientRouteArgs, CreateRouteArgs, RouteDefinition } from './types/route.ts'
 
 // Re-export types for consumers
 export type {
+  ClientEntries,
+  ClientModule,
+  ClientRouteArgs,
+  CreateRouteArgs,
   DevRuntimeConfig,
   FastifyViteOptions,
   ProdRuntimeConfig,
