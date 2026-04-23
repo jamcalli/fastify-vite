@@ -12,8 +12,8 @@ const options = {
     const resolvedRoutes = await routesPromise
     return { context, routes: resolvedRoutes, ...others }
   },
-  createHtmlFunction(source) {
-    return ({ routes, context, body }) => Promise.resolve()
+  async createHtmlFunction(source) {
+    return (ctx) => Promise.resolve()
   },
   createRenderFunction({ create, routes, createApp }) {
     return Promise.resolve((req) => {
@@ -21,17 +21,17 @@ const options = {
     })
   },
   renderer: {
-    createErrorHandler(client, scope, config) {
+    createErrorHandler(args, scope, config) {
       return (error: Error, req: any, reply: any) => {}
     },
-    createRoute({ client }, scope, config) {},
-    createRouteHandler(client, scope, config) {
+    createRoute(args, scope, config) {},
+    createRouteHandler(args, scope, config) {
       return (req, res) => {
         return Promise.resolve()
       }
     },
-    prepareClient(clientModule, scope, config) {
-      return Promise.resolve(clientModule)
+    prepareClient(entries, scope, config) {
+      return Promise.resolve(entries.ssr ?? null)
     },
   },
 } satisfies FastifyViteOptions
