@@ -4,12 +4,13 @@ import { join } from 'path'
 import { loadConfigFromFile, createBuilder, build } from 'vite'
 
 export function makeIndexTest({ main, dev }) {
-  return async () => {
+  return async (t) => {
     const server = await main(dev)
+    // Close via after-hook; a leaked server keeps the test process alive forever
+    t.after(() => server.close())
     const response = await server.inject({ method: 'GET', url: '/' })
     assert.strictEqual(response.statusCode, 200)
     await setTimeout(3000)
-    await server.close()
   }
 }
 
@@ -51,16 +52,13 @@ export function makeBuildTest({ cwd }) {
  * https://github.com/fastify/fastify-vite/issues/298
  */
 export function makeStartFromOutsideTest({ main }) {
-  return async () => {
+  return async (t) => {
     const originalCwd = process.cwd()
-    try {
-      process.chdir(join(import.meta.dirname, '..'))
-      const server = await main()
-      const response = await server.inject({ method: 'GET', url: '/' })
-      assert.strictEqual(response.statusCode, 200)
-      await server.close()
-    } finally {
-      process.chdir(originalCwd)
-    }
+    t.after(() => process.chdir(originalCwd))
+    process.chdir(join(import.meta.dirname, '..'))
+    const server = await main()
+    t.after(() => server.close())
+    const response = await server.inject({ method: 'GET', url: '/' })
+    assert.strictEqual(response.statusCode, 200)
   }
 }

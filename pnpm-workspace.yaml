@@ -29,6 +29,12 @@ catalogs:
     react-router: ^7.12.0
   solid:
     solid-js: ^1.9.5
+  tanstack:
+    '@tanstack/history': ^1.162.0
+    '@tanstack/react-router': ^1.170.15
+    '@tanstack/react-router-with-query': ^1.130.17
+    '@tanstack/router-core': ^1.171.13
+    '@tanstack/router-plugin': ^1.168.18
   vue:
     '@vitejs/plugin-vue': ^6.0.5
     vue: ^3.5.26
