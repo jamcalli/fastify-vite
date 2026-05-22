@@ -1,0 +1,38 @@
+{
+  "name": "tanstack-kitchensink-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts --dev",
+    "start": "NODE_ENV=production node build/server.js",
+    "build": "pnpm build:server && pnpm build:client",
+    "build:client": "vite build --app",
+    "build:server": "tsc"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/one-line-logger": "^2.0.2",
+    "@fastify/tanstack": "workspace:^",
+    "@fastify/vite": "workspace:^",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-router": "catalog:tanstack",
+    "@tanstack/react-router-with-query": "catalog:tanstack",
+    "fastify": "catalog:",
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.1",
+    "@tanstack/router-plugin": "catalog:tanstack",
+    "@types/node": "^24.12.2",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "postcss": "^8.5.3",
+    "postcss-preset-env": "^10.1.5",
+    "tailwindcss": "^4.1.1",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}
